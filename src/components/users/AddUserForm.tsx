@@ -53,21 +53,24 @@ export const AddUserForm = () => {
   };
 
   return (
-    <>
+    <div>
       <Input
         width="100%"
         name="productName"
         clearable
         placeholder="Black shoes"
         onChange={handlerform}
+        scale={4 / 3}
       />
       <Spacer h={0.5} />
       <Input
+        label="$"
         htmlType="number"
         name="productPrice"
         clearable
         placeholder="Price"
         onChange={handlerform}
+        scale={4 / 3}
       />
       <Spacer h={2} />
       <Button
@@ -75,9 +78,10 @@ export const AddUserForm = () => {
         loading={loading}
         type="secondary"
         onClick={() => saveUser()}
+        style={{ fontWeight: 900, textTransform: "uppercase" }}
       >
         Save product
       </Button>
-    </>
+    </div>
   );
 };

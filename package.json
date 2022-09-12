@@ -14,8 +14,10 @@
     "@types/react": "^18.0.18",
     "@types/react-dom": "^18.0.6",
     "axios": "^0.27.2",
+    "lodash": "^4.17.21",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-lazy-load-image-component": "^1.5.5",
     "react-redux": "^8.0.2",
     "react-scripts": "5.0.1",
     "redux": "^4.2.0",
@@ -48,6 +50,8 @@
     ]
   },
   "devDependencies": {
+    "@types/lodash": "^4.14.184",
+    "@types/react-lazy-load-image-component": "^1.5.2",
     "@types/uuid": "^8.3.4"
   }
 }

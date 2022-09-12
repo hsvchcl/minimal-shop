@@ -3,11 +3,17 @@
 }
 
 .avatar-img{
-  border-radius: 20px;
+  border-radius: 5px;
   max-width: 150px;
   min-width: 100px;
 }
 
 .blur-bg{
   backdrop-filter: blur(12px);
+}
+
+.woow{
+  position:absolute !important;
+  top: 0px;
+  z-index: 1000;
 }

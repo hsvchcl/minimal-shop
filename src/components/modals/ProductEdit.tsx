@@ -1,22 +1,50 @@
 import { Modal } from "@geist-ui/core";
+import { useEffect, useState } from "react";
+import { IProduct } from "../../interface/Product.interface";
+import { EditProductForm } from "../users/EditProductForm";
+import { useDispatch } from "react-redux";
+import { editProduct } from "../../redux/userSlice";
 
-export const ProductEdit = (props:any) => {
+export const ProductEdit = (props: any) => {
+  const [newEditProduct, setEditProduct] = useState<IProduct>({});
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    setEditProduct(props.product);
+  }, [props.product]);
+
   const closeHandler = () => {
     props.setOpenModal(false);
-    console.log("closed");
+  };
+
+  const handlerEditProduct = () => {
+    dispatch(editProduct(newEditProduct));
+    props.setOpenModal(false);
   };
 
   return (
-    <Modal visible={props.openModal} disableBackdropClick backdropClassName="blur-bg" onClose={() => closeHandler}>
+    <Modal
+      visible={props.openModal}
+      disableBackdropClick
+      backdropClassName="blur-bg"
+      onClose={() => closeHandler}
+      width="40rem"
+    >
       <Modal.Title>Edit Product</Modal.Title>
       <Modal.Subtitle>{props.product?.productName}</Modal.Subtitle>
       <Modal.Content>
-        <p>Some content contained within the modal.</p>
+        <EditProductForm
+          product={newEditProduct}
+          setEditProduct={setEditProduct}
+          newEditProduct={newEditProduct}
+        />
       </Modal.Content>
       <Modal.Action passive onClick={() => props.setOpenModal(false)}>
         Cancel
       </Modal.Action>
-      <Modal.Action>Save Changes</Modal.Action>
+      <Modal.Action onClick={() => handlerEditProduct()}>
+        Save Changes
+      </Modal.Action>
     </Modal>
   );
 };

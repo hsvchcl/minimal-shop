@@ -15,9 +15,26 @@ export const userSlice = createSlice({
       if (taskFound) {
         state.splice(state.indexOf(taskFound), 1);
       }
+    },
+    editProduct: (state, action) => {
+      const {
+        id,
+        productName,
+        productDescription,
+        productPrice,
+        productImageUrl
+      } = action.payload;
+
+      const productFound = state.find((el) => el.id === id);
+      if (productFound) {
+        productFound.productName = productName;
+        productFound.productDescription = productDescription;
+        productFound.productPrice = parseInt(productPrice);
+        productFound.productImageUrl = String(productImageUrl);
+      }
     }
   }
 });
 
-export const { addUser, deleteUser } = userSlice.actions;
+export const { addUser, deleteUser, editProduct } = userSlice.actions;
 export default userSlice.reducer;

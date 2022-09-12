@@ -1,10 +1,11 @@
-import { Spacer, Tabs, Text } from "@geist-ui/core";
+import { Spacer, Tabs } from "@geist-ui/core";
+import { Header } from "../components/header/Header";
 import { ProductAdminSection } from "./ProductAdminSection";
 import { ShopSection } from "./ShopSection";
 export const Home = () => {
   return (
     <>
-      <Text h1>Minimal Shop</Text>
+      <Header />
       <Spacer h={2} />
       <Tabs initialValue="1">
         <Tabs.Item label="My Shop" value="1">

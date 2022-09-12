@@ -13,25 +13,25 @@ import notFound from "../../assets/notFound2.svg";
 import { IProduct } from "../../interface/Product.interface";
 import { ProductEdit } from "../../components/modals/ProductEdit";
 
-export const NotFoundSection = () => {
-  return (
-    <Card shadow width="100%">
-      <div
-        style={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          flexDirection: "column",
-          color: "#d6d6d6"
-        }}
-      >
-        <img src={notFound} height={200} alt="" />
-        <Spacer h={2} />
-        <Text h3>No products</Text>
-      </div>
-    </Card>
-  );
-};
+// export const NotFoundSection = () => {
+//   return (
+//     <Card shadow width="100%">
+//       <div
+//         style={{
+//           display: "flex",
+//           alignItems: "center",
+//           justifyContent: "center",
+//           flexDirection: "column",
+//           color: "#d6d6d6"
+//         }}
+//       >
+//         <img src={notFound} height={200} alt="" />
+//         <Spacer h={2} />
+//         <Text h3>No products</Text>
+//       </div>
+//     </Card>
+//   );
+// };
 
 export const ListProducts = () => {
   const userRegister: IProduct[] = useSelector((state: any) => state.users);
@@ -63,7 +63,7 @@ export const ListProducts = () => {
         justifyContent: "flex-end"
       }}
     >
-      {userRegister.length === 0 && <NotFoundSection />}
+      {/* {userRegister.length === 0 && <NotFoundSection />} */}
       <Card hidden={userRegister.length === 0} shadow width="100%">
         <Text hidden={userRegister.length === 0} h2>
           Products
@@ -107,9 +107,9 @@ export const ListProducts = () => {
                   <img className="avatar-img" src={el.productImageUrl} alt="" />
                 </div>
                 <div>
-                  <h3>
-                    <strong>{el.productName!.toLocaleUpperCase()}</strong>
-                  </h3>
+                  <Text h3 style={{fontWeight:900}}>
+                    {el.productName!.toLocaleUpperCase()}
+                  </Text>
                   <p>{el.productDescription}</p>
                   <Badge>
                     $
