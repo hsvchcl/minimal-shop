@@ -2,18 +2,25 @@
   text-align: center;
 }
 
-.avatar-img{
+.avatar-img {
   border-radius: 5px;
   max-width: 150px;
   min-width: 100px;
 }
 
-.blur-bg{
+.blur-bg {
   backdrop-filter: blur(12px);
 }
 
-.woow{
-  position:absolute !important;
-  top: 0px;
-  z-index: 1000;
+.hidde-card {
+  display: none;
+}
+
+.display-card {
+  display: block;
+}
+
+.float-menu{
+  position: absolute !important;
+  bottom: 0px
 }

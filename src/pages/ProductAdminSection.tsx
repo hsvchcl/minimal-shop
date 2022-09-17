@@ -1,24 +1,8 @@
-import { Card, Grid, Text } from "@geist-ui/core";
-import { useEffect } from "react";
-import { AddUserForm } from "../components/users/AddUserForm";
-import { ListProducts } from "../components/users/ListUser";
+import { Card, Grid, Text } from '@geist-ui/core'
+import { AddUserForm } from '../components/users/AddUserForm'
+import { ListProducts } from '../components/users/ListUser'
 
 export const ProductAdminSection = () => {
-
-  const handleScroll = () => {
-    // console.log('scroll=>', window.scrollY);
-    const element = document.getElementById("card_new");
-    if (window.scrollY > 200) {
-      element?.classList.add("woow");
-    }else{
-      element?.classList.remove("woow");
-    }
-  };
-
-  useEffect(() => {
-    window.addEventListener("scroll", handleScroll);
-  }, []);
-
   return (
     <Grid.Container gap={2} justify="flex-start" alignItems="flex-start">
       <Grid xs={12}>
@@ -34,5 +18,5 @@ export const ProductAdminSection = () => {
         <ListProducts />
       </Grid>
     </Grid.Container>
-  );
-};
+  )
+}

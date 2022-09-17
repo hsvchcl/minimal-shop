@@ -1,15 +1,18 @@
-import { Badge, Button, Card, Grid, Link, Text } from "@geist-ui/core";
-import { Plus } from "@geist-ui/icons";
-import { useSelector } from "react-redux";
-import { IProduct } from "../interface/Product.interface";
+import { Badge, Button, Card, Grid, Link, Text } from '@geist-ui/core'
+import { Plus } from '@geist-ui/icons'
+import { useSelector } from 'react-redux'
+import { IProduct } from '../interface/Product.interface'
+import { RootState } from '../redux/store'
 
 export const ShopSection = () => {
-  const userRegister: IProduct[] = useSelector((state: any) => state.users);
+  const products = useSelector(
+    (state: RootState): IProduct[] => state.productReducer,
+  )
 
   return (
     <Grid.Container gap={2} justify="flex-start" alignItems="center">
-      {userRegister &&
-        userRegister
+      {products &&
+        products
           .map((el: IProduct, idx) => (
             <Grid xs={6} key={idx}>
               <Card shadow width="100%">
@@ -17,7 +20,7 @@ export const ShopSection = () => {
                   src={el.productImageUrl}
                   alt=""
                   height="250"
-                  style={{ objectFit: "contain" }}
+                  style={{ objectFit: 'contain' }}
                 />
                 <Text h3 style={{ fontWeight: 900 }}>
                   {el.productName!.toLocaleUpperCase()}
@@ -27,7 +30,7 @@ export const ShopSection = () => {
                   $
                   {el
                     .productPrice!.toString()
-                    .replace(/\B(?=(\d{3})+(?!\d))/g, ".")}
+                    .replace(/\B(?=(\d{3})+(?!\d))/g, '.')}
                 </Badge>
                 <Card.Footer>
                   <Button icon={<Plus />} type="secondary" ghost width="100%">
@@ -39,5 +42,5 @@ export const ShopSection = () => {
           ))
           .reverse()}
     </Grid.Container>
-  );
-};
+  )
+}

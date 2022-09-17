@@ -1,7 +1,7 @@
 import { Button, Input, Spacer, useToasts } from "@geist-ui/core";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { addUser } from "../../redux/userSlice";
+import { productActions } from "../../redux/productSlice";
 import { v4 as uuid } from "uuid";
 import { IProduct } from "../../interface/Product.interface";
 import { searchImage } from "../../services/rapidAPI.service";
@@ -30,7 +30,7 @@ export const AddUserForm = () => {
       const { image, source } = images[0];
       console.log(images[0]);
       dispatch(
-        addUser({
+        productActions.addProduct({
           ...user,
           productImageUrl: image.url,
           productDescription: source.title

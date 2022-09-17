@@ -1,7 +1,7 @@
-import { Spacer, Tabs } from "@geist-ui/core";
-import { Header } from "../components/header/Header";
-import { ProductAdminSection } from "./ProductAdminSection";
-import { ShopSection } from "./ShopSection";
+import { Spacer, Tabs } from '@geist-ui/core'
+import { Header } from '../components/header/Header'
+import { ProductAdminSection } from './ProductAdminSection'
+import { ShopSection } from './ShopSection'
 export const Home = () => {
   return (
     <>
@@ -18,5 +18,5 @@ export const Home = () => {
         </Tabs.Item>
       </Tabs>
     </>
-  );
-};
+  )
+}

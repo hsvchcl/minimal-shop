@@ -1,0 +1,14 @@
+.login-container {
+  height: calc(100vh - 100px);
+  display: grid;
+  place-items: center;
+}
+
+.login-content-container{
+  max-width: 600px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  align-content: center;
+  gap: 50px;
+}

@@ -1,40 +1,33 @@
-import { createSlice } from "@reduxjs/toolkit";
-import { IProduct } from "../interface/Product.interface";
+import { createSlice } from '@reduxjs/toolkit'
+import { IUser } from '../interface/Product.interface'
 
-const initialState: IProduct[] = [];
+const initialState: IUser = {
+  displayName: '',
+  email: '',
+  photoURL: '',
+  uid: '',
+}
 
-export const userSlice = createSlice({
-  name: "users",
+export const userReducer = createSlice({
+  name: 'userReducer',
   initialState,
   reducers: {
-    addUser: (state, action) => {
-      state.push(action.payload);
+    addUser: (state, action): void => {
+      console.log(action.payload)
+      const userData: any = action.payload
+      state.displayName = userData.displayName
+      state.email = userData.email
+      state.photoURL = userData.photoURL
+      state.uid = userData.uid
     },
-    deleteUser: (state, action) => {
-      const taskFound = state.find((el) => el.id === action.payload);
-      if (taskFound) {
-        state.splice(state.indexOf(taskFound), 1);
-      }
+    resetState: () => {
+      return initialState
     },
-    editProduct: (state, action) => {
-      const {
-        id,
-        productName,
-        productDescription,
-        productPrice,
-        productImageUrl
-      } = action.payload;
+    getUserData: (state, action) => {
+      return state
+    },
+  },
+})
 
-      const productFound = state.find((el) => el.id === id);
-      if (productFound) {
-        productFound.productName = productName;
-        productFound.productDescription = productDescription;
-        productFound.productPrice = parseInt(productPrice);
-        productFound.productImageUrl = String(productImageUrl);
-      }
-    }
-  }
-});
-
-export const { addUser, deleteUser, editProduct } = userSlice.actions;
-export default userSlice.reducer;
+export const { actions: userActions } = userReducer
+export default userReducer.reducer

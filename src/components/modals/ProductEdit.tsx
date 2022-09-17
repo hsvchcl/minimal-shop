@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { IProduct } from "../../interface/Product.interface";
 import { EditProductForm } from "../users/EditProductForm";
 import { useDispatch } from "react-redux";
-import { editProduct } from "../../redux/userSlice";
+import { productActions } from "../../redux/productSlice";
 
 export const ProductEdit = (props: any) => {
   const [newEditProduct, setEditProduct] = useState<IProduct>({});
@@ -18,7 +18,7 @@ export const ProductEdit = (props: any) => {
   };
 
   const handlerEditProduct = () => {
-    dispatch(editProduct(newEditProduct));
+    dispatch(productActions.editProduct(newEditProduct));
     props.setOpenModal(false);
   };
 

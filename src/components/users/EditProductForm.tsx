@@ -3,7 +3,7 @@ import { IProduct } from "../../interface/Product.interface";
 import { searchImage } from "../../services/rapidAPI.service";
 import { sample } from "lodash";
 import { useState } from "react";
-import { RefreshCcw, UserX } from "@geist-ui/icons";
+import { RefreshCcw } from "@geist-ui/icons";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 
 export const EditProductForm = (props: {

@@ -1,11 +1,39 @@
-.circular--portrait {
-  position: relative;
-  width: 70px;
-  height: 70px;
-  overflow: hidden;
-  border-radius: 50%;
-}
-.circular--portrait img {
-  width: 100%;
+.header-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-content: center;
+  align-items: center;
   height: auto;
 }
+
+.header-logo {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  align-content: center;
+  gap: 20px;
+}
+
+.header-logo h2 {
+  margin-bottom: 0px;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.user-description-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  align-content: center;
+  gap: 10px;
+  padding: 10px;
+  border-radius: 10px;
+  transition: 0.5s;
+}
+
+.user-description-container:hover {
+  background-color: rgba(0, 0, 0, 0.055);
+  cursor: pointer;
+}
+

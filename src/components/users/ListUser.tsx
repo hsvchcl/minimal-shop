@@ -8,40 +8,20 @@ import {
   useToasts
 } from "@geist-ui/core";
 import { useSelector, useDispatch } from "react-redux";
-import { deleteUser } from "../../redux/userSlice";
-import notFound from "../../assets/notFound2.svg";
+import { productActions } from "../../redux/productSlice";
 import { IProduct } from "../../interface/Product.interface";
 import { ProductEdit } from "../../components/modals/ProductEdit";
-
-// export const NotFoundSection = () => {
-//   return (
-//     <Card shadow width="100%">
-//       <div
-//         style={{
-//           display: "flex",
-//           alignItems: "center",
-//           justifyContent: "center",
-//           flexDirection: "column",
-//           color: "#d6d6d6"
-//         }}
-//       >
-//         <img src={notFound} height={200} alt="" />
-//         <Spacer h={2} />
-//         <Text h3>No products</Text>
-//       </div>
-//     </Card>
-//   );
-// };
+import { RootState } from "../../redux/store";
 
 export const ListProducts = () => {
-  const userRegister: IProduct[] = useSelector((state: any) => state.users);
+  const userRegister = useSelector((state: RootState): IProduct[] => state.productReducer)
   const dispatch = useDispatch();
   const { setToast } = useToasts();
   const [openModal, setOpenModal] = useState(false);
   const [product, setProduct] = useState<IProduct>({});
 
   const delUser = (id: string, productName: string) => {
-    dispatch(deleteUser(id));
+    dispatch(productActions.deleteUser(id));
     setToast({
       text: `${productName} has been deleted!`,
       type: "success",
