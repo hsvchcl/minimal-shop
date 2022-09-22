@@ -1,9 +1,12 @@
 export interface IProduct {
+  fid?: string
   id?: string
   productName?: string
   productDescription?: string
   productPrice?: number
   productImageUrl?: string
+  created?: number
+  shopUID?: string
 }
 
 export interface IUser {
@@ -11,6 +14,7 @@ export interface IUser {
   email?: string
   photoURL?: string
   uid?: string
+  shopUID?: string
 }
 
 export interface IModalDisplay {

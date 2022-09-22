@@ -1,14 +1,18 @@
 import { Spacer, Tabs } from '@geist-ui/core'
+import { useEffect } from 'react'
 import { Header } from '../components/header/Header'
 import { ProductAdminSection } from './ProductAdminSection'
 import { ShopSection } from './ShopSection'
 export const Home = () => {
+  useEffect(() => {
+    document.title = 'Wall'
+  })
   return (
     <>
       <Header />
       <Spacer h={2} />
-      <Tabs initialValue="1">
-        <Tabs.Item label="My Shop" value="1">
+      <Tabs initialValue="2">
+        <Tabs.Item label="My Wall" value="1">
           <Spacer h={2} />
           <ShopSection />
         </Tabs.Item>

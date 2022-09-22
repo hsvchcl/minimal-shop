@@ -1,26 +1,28 @@
-import { Modal } from "@geist-ui/core";
-import { useEffect, useState } from "react";
-import { IProduct } from "../../interface/Product.interface";
-import { EditProductForm } from "../users/EditProductForm";
-import { useDispatch } from "react-redux";
-import { productActions } from "../../redux/productSlice";
+import { Modal } from '@geist-ui/core'
+import { useEffect, useState } from 'react'
+import { IProduct } from '../../interface/Product.interface'
+import { EditProductForm } from '../productAdmin/EditProductForm'
+import { useDispatch } from 'react-redux'
+import { productActions } from '../../redux/productSlice'
+import { editProduct } from '../productAdmin/products.service'
 
 export const ProductEdit = (props: any) => {
-  const [newEditProduct, setEditProduct] = useState<IProduct>({});
-  const dispatch = useDispatch();
+  const [newEditProduct, setEditProduct] = useState<IProduct>({})
+  const dispatch = useDispatch()
 
   useEffect(() => {
-    setEditProduct(props.product);
-  }, [props.product]);
+    setEditProduct(props.product)
+  }, [props.product])
 
   const closeHandler = () => {
-    props.setOpenModal(false);
-  };
+    props.setOpenModal(false)
+  }
 
   const handlerEditProduct = () => {
-    dispatch(productActions.editProduct(newEditProduct));
-    props.setOpenModal(false);
-  };
+    dispatch(productActions.editProduct(newEditProduct))
+    editProduct(newEditProduct)
+    props.setOpenModal(false)
+  }
 
   return (
     <Modal
@@ -46,5 +48,5 @@ export const ProductEdit = (props: any) => {
         Save Changes
       </Modal.Action>
     </Modal>
-  );
-};
+  )
+}

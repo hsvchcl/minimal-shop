@@ -6,6 +6,7 @@ const initialState: IUser = {
   email: '',
   photoURL: '',
   uid: '',
+  shopUID: '',
 }
 
 export const userReducer = createSlice({
@@ -19,6 +20,7 @@ export const userReducer = createSlice({
       state.email = userData.email
       state.photoURL = userData.photoURL
       state.uid = userData.uid
+      state.shopUID = userData.shopUID
     },
     resetState: () => {
       return initialState

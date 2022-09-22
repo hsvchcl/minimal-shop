@@ -7,8 +7,8 @@ export const productReducer = createSlice({
   name: 'users',
   initialState,
   reducers: {
-    addProduct: (state, action) => {
-      state.push(action.payload)
+    addProduct: (state, action): void => {
+      return state = action.payload;
     },
     deleteUser: (state, action) => {
       const taskFound = state.find((el) => el.id === action.payload)

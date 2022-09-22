@@ -9,6 +9,7 @@ import { Provider } from 'react-redux'
 import { createBrowserRouter, RouterProvider, Route } from 'react-router-dom'
 import { Login } from './pages/login/Login'
 import './firebase/firebase.config'
+import { Shop } from './pages/shop/Shop'
 
 const router = createBrowserRouter([
   {
@@ -20,6 +21,10 @@ const router = createBrowserRouter([
     path: '/home',
     element: <App />,
     loader: loaderApp,
+  },
+  {
+    path: '/shop/:shopID',
+    element: <Shop />,
   },
 ])
 

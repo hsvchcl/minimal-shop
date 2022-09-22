@@ -12,7 +12,7 @@
   flex-direction: row;
   align-items: center;
   align-content: center;
-  gap: 20px;
+  gap: 10px;
 }
 
 .header-logo h2 {
@@ -36,4 +36,10 @@
   background-color: rgba(0, 0, 0, 0.055);
   cursor: pointer;
 }
-
+.note {
+  transition: 0.4s;
+}
+.note:hover {
+  cursor: pointer;
+  transform: scale(1.03);
+}
