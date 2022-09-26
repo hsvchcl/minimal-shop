@@ -32,7 +32,7 @@ export const ProductEdit = (props: any) => {
       onClose={() => closeHandler}
       width="40rem"
     >
-      <Modal.Title>Edit Product</Modal.Title>
+      <Modal.Title>Edición</Modal.Title>
       <Modal.Subtitle>{props.product?.productName}</Modal.Subtitle>
       <Modal.Content>
         <EditProductForm
@@ -42,10 +42,10 @@ export const ProductEdit = (props: any) => {
         />
       </Modal.Content>
       <Modal.Action passive onClick={() => props.setOpenModal(false)}>
-        Cancel
+        Cancelar
       </Modal.Action>
       <Modal.Action onClick={() => handlerEditProduct()}>
-        Save Changes
+        Guardar cambios
       </Modal.Action>
     </Modal>
   )

@@ -7,6 +7,8 @@ export interface IProduct {
   productImageUrl?: string
   created?: number
   shopUID?: string
+  stock?: number
+  files?: []
 }
 
 export interface IUser {

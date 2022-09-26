@@ -16,9 +16,6 @@ export const searchImage = async (productName: string) => {
       .request(options)
       .then(function (response) {
         return response.data.response.images;
-      })
-      .catch(function (error) {
-        console.error(error);
       });
   } catch (error) {
     console.error(error);

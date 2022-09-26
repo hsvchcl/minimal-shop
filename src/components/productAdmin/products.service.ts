@@ -11,6 +11,7 @@ import {
 } from 'firebase/firestore'
 
 export const addNewProduct = (product: IProduct) => {
+  console.log(product);
   try {
     product = { ...product, created: Date.now() }
     return addDoc(collection(db, 'products'), product)
