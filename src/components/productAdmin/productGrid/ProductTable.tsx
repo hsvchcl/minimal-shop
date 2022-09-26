@@ -41,7 +41,7 @@ export const ProductTable = () => {
   const productImageRender = (value: string) => {
     return (
       <Image
-        src={value.length ? value : notImageProduct}
+        src={value ? value[0] : notImageProduct}
         height={4}
         margin={1}
       />
@@ -112,7 +112,7 @@ export const ProductTable = () => {
         <>
           <Table data={products}>
             <Table.Column
-              prop="productImageUrl"
+              prop="images"
               label="Ref"
               render={productImageRender}
             />

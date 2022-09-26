@@ -5,7 +5,7 @@ export const NewAdminSection = () => {
   return (
     <Grid.Container gap={2} alignItems="baseline">
       <Grid md={12} xs={24}>
-        <Card id="card_new" shadow width="100%">
+        <Card id="card_new" width="100%">
           <Text h3 my={0}>
            Añadir Nuevo
           </Text>
