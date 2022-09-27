@@ -1,142 +1,132 @@
-import "./addProductForm.css";
-import {
-  Button,
-  Input,
-  Spacer,
-  useToasts,
-  Text,
-  Textarea,
-  Progress
-} from "@geist-ui/core";
-import { useEffect, useState } from "react";
-import { v4 as uuid } from "uuid";
-import { IProduct, IProductImages } from "../../../interface/Product.interface";
-import { getUserLoggedInfo } from "../../../utils/userInfo";
-import { addNewProduct } from "../products.service";
-import { uploadFileToStorage } from "../../../utils/uploadFileToStorage";
-import { getDownloadURL } from "firebase/storage";
-import { UploadThumbs } from "./uploadThumbs/UploadThumbs";
-import { FilePlus } from "@geist-ui/icons";
-import { el } from "date-fns/locale";
+import './addProductForm.css'
+import { Button, Input, Spacer, useToasts, Text, Textarea, Progress } from '@geist-ui/core'
+import { useEffect, useState } from 'react'
+import { v4 as uuid } from 'uuid'
+import { IProduct, IProductImages } from '../../../interface/Product.interface'
+import { getUserLoggedInfo } from '../../../utils/userInfo'
+import { addNewProduct } from '../products.service'
+import { uploadFileToStorage } from '../../../utils/uploadFileToStorage'
+import { getDownloadURL } from 'firebase/storage'
+import { UploadThumbs } from './uploadThumbs/UploadThumbs'
+import { FilePlus } from '@geist-ui/icons'
 
 export const AddUserForm = () => {
   const [product, setProduct] = useState<IProduct>({
-    id: "",
+    id: '',
     files: [],
-    productName: "",
-    productDescription: "",
+    productName: '',
+    productDescription: '',
     productPrice: 0,
-    productImageUrl: "",
+    productImageUrl: '',
     stock: 0,
-    images: []
-  });
-  const [loading, setLoading] = useState(false);
-  const [validForm, setValidForm] = useState(false);
-  const [percent, setPercent] = useState(0.0);
-  const [images, setImages] = useState<IProductImages[]>([]);
-  const [loadImage, setLoadImage] = useState(true);
-  const { setToast } = useToasts();
+    images: [],
+  })
+  const [loading, setLoading] = useState(false)
+  const [validForm, setValidForm] = useState(false)
+  const [percent, setPercent] = useState(0.0)
+  const [images, setImages] = useState<IProductImages[]>([])
+  const [loadImage, setLoadImage] = useState(true)
+  const { setToast } = useToasts()
 
   useEffect(() => {
-    const { productName, productPrice, stock } = product;
+    const { productName, productPrice, stock } = product
     if (
-      productName?.length! > 3 &&
+      productName &&
+      productName.length > 3 &&
       String(productPrice).length > 0 &&
       String(stock).length > 0
     ) {
-      setValidForm(true);
+      setValidForm(true)
     } else {
-      setValidForm(false);
+      setValidForm(false)
     }
-  }, [product]);
+  }, [product])
 
   const handlerform = async (e: any) => {
-    setProduct({ ...product, id: uuid(), [e.target.name]: e.target.value });
-  };
+    setProduct({ ...product, id: uuid(), [e.target.name]: e.target.value })
+  }
 
   const handlerFile = (event: any) => {
-    const files = event.target.files;
-    uploadFile(files);
-  };
+    const files = event.target.files
+    uploadFile(files)
+  }
 
   const uploadFile = (files: []) => {
     if (images.length <= 4) {
-      const uploadTask = uploadFileToStorage(files);
+      const uploadTask = uploadFileToStorage(files)
       uploadTask?.on(
-        "state_changed",
+        'state_changed',
         (snapshot) => {
-          const percent = Math.round(
-            (snapshot.bytesTransferred / snapshot.totalBytes) * 100
-          );
+          const percent = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100)
 
-          setLoadImage(false);
+          setLoadImage(false)
           // update progress
-          setPercent(percent);
+          setPercent(percent)
         },
         (err) => console.log(err),
         () => {
-          setLoadImage(true);
+          setLoadImage(true)
           // download url
           getDownloadURL(uploadTask.snapshot.ref).then((url) => {
-            console.log(url);
+            console.log(url)
             const imageObject = {
               imageURL: url,
-              imageRef: uploadTask.snapshot.ref
-            };
-            setImages([...images, imageObject]);
-          });
-        }
-      );
+              imageRef: uploadTask.snapshot.ref,
+            }
+            setImages([...images, imageObject])
+          })
+        },
+      )
     } else {
       setToast({
-        text: `No puede subir mas de 5 imágenes por producto`,
-        type: "error",
-        delay: 3000
-      });
+        text: 'No puede subir mas de 5 imágenes por producto',
+        type: 'error',
+        delay: 3000,
+      })
     }
-  };
+  }
 
   const saveProduct = async () => {
     try {
-      const productInfo = getUserLoggedInfo();
-      setLoading(true);
+      const productInfo = getUserLoggedInfo()
+      setLoading(true)
       await addNewProduct({
         ...product,
-        productImageUrl: "",
-        productDescription: "Producto sin descripción",
+        productImageUrl: '',
+        productDescription: 'Producto sin descripción',
         shopUID: productInfo.shopUID,
         images: images.map((el: IProductImages) => ({
           ...el,
-          imageRef: JSON.stringify(el.imageRef)
-        }))
-      });
-      setLoading(false);
+          imageRef: JSON.stringify(el.imageRef),
+        })),
+      })
+      setLoading(false)
       setToast({
         text: `${product.productName!.toLocaleUpperCase()} has saved!`,
-        type: "success",
-        delay: 2000
-      });
+        type: 'success',
+        delay: 2000,
+      })
     } catch (error) {
       if (error instanceof Error) {
-        console.log(error);
-        setLoading(false);
+        console.log(error)
+        setLoading(false)
         setToast({
           text: `Ocurrió un error: ${error.message}`,
-          type: "error",
-          delay: 2000
-        });
+          type: 'error',
+          delay: 2000,
+        })
       }
     }
-  };
+  }
 
   return (
     <div>
       <Spacer h={1.5} />
       <Input
-        width="100%"
-        name="productName"
+        width='100%'
+        name='productName'
         clearable
-        placeholder="iPhone"
+        placeholder='iPhone'
         onChange={handlerform}
         scale={4 / 3}
       >
@@ -144,26 +134,26 @@ export const AddUserForm = () => {
       </Input>
       <Spacer h={1} />
       <Input
-        htmlType="number"
-        name="productPrice"
+        htmlType='number'
+        name='productPrice'
         clearable
-        placeholder="1000"
+        placeholder='1000'
         onChange={handlerform}
         scale={4 / 3}
-        width={"100%"}
+        width={'100%'}
         min={1}
       >
         <Text small>Precio</Text>
       </Input>
       <Spacer h={1} />
       <Input
-        htmlType="number"
-        name="stock"
+        htmlType='number'
+        name='stock'
         clearable
-        placeholder="12"
+        placeholder='12'
         onChange={handlerform}
         scale={4 / 3}
-        width={"100%"}
+        width={'100%'}
         min={1}
       >
         <Text small>Stock</Text>
@@ -172,29 +162,29 @@ export const AddUserForm = () => {
       <Text small>Descripción</Text>
       <Spacer h={0.5} />
       <Textarea
-        name="productDescription"
-        placeholder="El mejor producto..."
+        name='productDescription'
+        placeholder='El mejor producto...'
         onChange={handlerform}
         scale={4 / 3}
-        width={"100%"}
+        width={'100%'}
       />
 
       <UploadThumbs images={images} setImages={setImages} />
       <Spacer h={1.5} />
 
-      <label htmlFor="files">
-        <div className="upload-card">
-          <FilePlus cursor={"pointer"} />
+      <label htmlFor='files'>
+        <div className='upload-card'>
+          <FilePlus cursor={'pointer'} />
           <Text>
             Agregar imágenes
-            {images.length > 0 && ": " + images.length + " de 5"}
+            {images.length > 0 && ': ' + images.length + ' de 5'}
           </Text>
         </div>
         <input
-          accept="image/*"
-          type="file"
-          id="files"
-          style={{ display: "none" }}
+          accept='image/*'
+          type='file'
+          id='files'
+          style={{ display: 'none' }}
           onChange={handlerFile}
         />
       </label>
@@ -205,15 +195,15 @@ export const AddUserForm = () => {
 
       <Spacer h={2} />
       <Button
-        width={"100%"}
+        width={'100%'}
         disabled={!validForm}
         loading={loading}
-        type="secondary"
+        type='secondary'
         onClick={() => saveProduct()}
-        style={{ textTransform: "uppercase" }}
+        style={{ textTransform: 'uppercase' }}
       >
         Guardar
       </Button>
     </div>
-  );
-};
+  )
+}

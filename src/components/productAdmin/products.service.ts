@@ -1,17 +1,9 @@
 import { IProduct } from '../../interface/Product.interface'
 import { db } from '../../firebase/firebase.config'
-import {
-  addDoc,
-  collection,
-  doc,
-  orderBy,
-  query,
-  updateDoc,
-  deleteDoc,
-} from 'firebase/firestore'
+import { addDoc, collection, doc, orderBy, query, updateDoc, deleteDoc } from 'firebase/firestore'
 
 export const addNewProduct = (product: IProduct) => {
-  console.log(product);
+  console.log(product)
   try {
     product = { ...product, created: Date.now() }
     return addDoc(collection(db, 'products'), product)

@@ -1,16 +1,16 @@
-.upload-card{
-    padding: 20px;
-    border-radius: 10px;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    cursor: pointer;
-    transition: .2s;
-    border: 1px dashed gray;
+.upload-card {
+  padding: 20px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  cursor: pointer;
+  transition: 0.2s;
+  border: 1px dashed gray;
 }
 
-.upload-card:hover{
-    transform: scale(0.99);
+.upload-card:hover {
+  transform: scale(0.99);
 }

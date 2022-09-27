@@ -28,9 +28,9 @@ export const ProductEdit = (props: any) => {
     <Modal
       visible={props.openModal}
       disableBackdropClick
-      backdropClassName="blur-bg"
+      backdropClassName='blur-bg'
       onClose={() => closeHandler}
-      width="40rem"
+      width='40rem'
     >
       <Modal.Title>Edición</Modal.Title>
       <Modal.Subtitle>{props.product?.productName}</Modal.Subtitle>
@@ -44,9 +44,7 @@ export const ProductEdit = (props: any) => {
       <Modal.Action passive onClick={() => props.setOpenModal(false)}>
         Cancelar
       </Modal.Action>
-      <Modal.Action onClick={() => handlerEditProduct()}>
-        Guardar cambios
-      </Modal.Action>
+      <Modal.Action onClick={() => handlerEditProduct()}>Guardar cambios</Modal.Action>
     </Modal>
   )
 }

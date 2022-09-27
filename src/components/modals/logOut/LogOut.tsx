@@ -19,7 +19,7 @@ export const LogoutModal = (props: any) => {
     <Modal
       visible={props.modalOpen}
       disableBackdropClick
-      backdropClassName="blur-bg"
+      backdropClassName='blur-bg'
       onClose={() => closeHandler}
     >
       <Modal.Title>Logout</Modal.Title>

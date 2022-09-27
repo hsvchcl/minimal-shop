@@ -8,7 +8,7 @@ import { LazyLoadImage } from 'react-lazy-load-image-component'
 
 export const EditProductForm = (props: {
   product: IProduct
-  setEditProduct: Function
+  setEditProduct: (setEditProduct: object) => void
   newEditProduct: IProduct
 }) => {
   const [loading, setLoading] = useState(false)
@@ -66,7 +66,7 @@ export const EditProductForm = (props: {
           />
           <Spacer h={1} />
           <Button
-            type="success"
+            type='success'
             style={{ width: '100%' }}
             onClick={() => handlerChangeImage(props.newEditProduct)}
             loading={loading}
@@ -77,46 +77,45 @@ export const EditProductForm = (props: {
         </div>
         <div style={{ width: '100%' }}>
           <Input
-            width="100%"
-            name="productName"
+            width='100%'
+            name='productName'
             initialValue={props.product.productName}
-            placeholder="Black shoes"
+            placeholder='Black shoes'
             onChange={handlerform}
           >
             <Text small>Nombre</Text>
           </Input>
           <Spacer h={1} />
           <Textarea
-            width="100%"
-            name="productDescription"
+            width='100%'
+            name='productDescription'
             initialValue={props.product.productDescription}
-            placeholder="Black shoes"
+            placeholder='Black shoes'
             onChange={handlerform}
             resize='vertical'
-
           />
-      
+
           <Spacer h={1} />
           <Input
-            htmlType="number"
-            name="productPrice"
+            htmlType='number'
+            name='productPrice'
             initialValue={String(props.product.productPrice)}
-            placeholder="Price"
+            placeholder='Price'
             onChange={handlerform}
             min={1}
           >
-           <Text small>Precio</Text>
+            <Text small>Precio</Text>
           </Input>
           <Spacer h={1} />
           <Input
-            htmlType="number"
-            name="stock"
+            htmlType='number'
+            name='stock'
             initialValue={String(props.product.stock)}
-            placeholder="2"
+            placeholder='2'
             onChange={handlerform}
             min={1}
           >
-          <Text small>Stock</Text>
+            <Text small>Stock</Text>
           </Input>
           <Spacer h={2} />
         </div>

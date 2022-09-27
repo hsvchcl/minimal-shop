@@ -3,9 +3,9 @@ import { ProductTable } from '../components/productAdmin/productGrid/ProductTabl
 
 export const ProductAdminSection = () => {
   return (
-    <Grid.Container gap={2} alignItems="baseline">
+    <Grid.Container gap={2} alignItems='baseline'>
       <Grid md={24}>
-        <Card id="card_new" shadow width="100%">
+        <Card id='card_new' shadow width='100%'>
           <Text h3 my={0}>
             Artículos publicados
           </Text>

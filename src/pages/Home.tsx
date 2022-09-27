@@ -23,9 +23,7 @@ const loadProductData = () => {
 }
 
 export const Home = () => {
-  const products = useSelector(
-    (state: RootState): IProduct[] => state.productReducer,
-  )
+  const products = useSelector((state: RootState): IProduct[] => state.productReducer)
   useEffect(() => {
     document.title = 'Wall'
     loadProductData()
@@ -34,20 +32,16 @@ export const Home = () => {
     <>
       <Header />
       <Spacer h={2} />
-      <Tabs initialValue="3">
-        <Tabs.Item
-          label="Wall"
-          value="1"
-          disabled={products.length ? false : true}
-        >
+      <Tabs initialValue='3'>
+        <Tabs.Item label='Wall' value='1' disabled={products.length ? false : true}>
           <Spacer h={2} />
           <ShopSection />
         </Tabs.Item>
-        <Tabs.Item label="Nuevo" value="3">
+        <Tabs.Item label='Nuevo' value='3'>
           <Spacer h={2} />
           <NewAdminSection />
         </Tabs.Item>
-        <Tabs.Item label="Productos" value="2">
+        <Tabs.Item label='Productos' value='2'>
           <Spacer h={2} />
           <ProductAdminSection />
         </Tabs.Item>

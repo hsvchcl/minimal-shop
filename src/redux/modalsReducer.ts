@@ -11,7 +11,7 @@ export const modalReducer = createSlice({
   initialState,
   reducers: {
     openCloseUserInfoModal: (state, action) => {
-      console.log(action.payload);
+      console.log(action.payload)
       state.modalUserInfo = action.payload
     },
   },

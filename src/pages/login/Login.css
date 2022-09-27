@@ -4,7 +4,7 @@
   place-items: center;
 }
 
-.login-content-container{
+.login-content-container {
   max-width: 600px;
   display: flex;
   flex-direction: row;

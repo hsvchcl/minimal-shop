@@ -11,8 +11,8 @@ const getUserInfo = () => {
 
 const HeaderLogo = () => {
   return (
-    <div className="header-logo">
-      <Image width="auto" height="60px" src={logo} />
+    <div className='header-logo'>
+      <Image width='auto' height='60px' src={logo} />
     </div>
   )
 }
@@ -32,14 +32,11 @@ const UserDescription = () => {
 
   return (
     <>
-      <div
-        className="user-description-container"
-        onClick={() => handlerOpenModal()}
-      >
+      <div className='user-description-container' onClick={() => handlerOpenModal()}>
         <Image
-          id="image-avatar"
-          width="auto"
-          height="40px"
+          id='image-avatar'
+          width='auto'
+          height='40px'
           src={userInfo.photoURL || './assets/default.png'}
         />
         <Description title={userInfo.displayName} content={userInfo.email} />
@@ -55,18 +52,14 @@ const ShopUrl = () => {
 
   useEffect(() => {
     setShopUrl(`${pathURL}/shop/${getUserInfo().shopUID}`)
-  },[])
+  }, [])
 
   const handlerShopRedirect = () => {
     window.open(`http://${shopUrl}`, '_blank', 'noopener, noreferrer')
   }
 
   return (
-    <Note
-      className="note"
-      onClick={() => handlerShopRedirect()}
-      label="My Wall"
-    >
+    <Note className='note' onClick={() => handlerShopRedirect()} label='My Wall'>
       {shopUrl}
     </Note>
   )
@@ -74,7 +67,7 @@ const ShopUrl = () => {
 
 export const Header = () => {
   return (
-    <div className="header-container">
+    <div className='header-container'>
       <HeaderLogo />
       <ShopUrl />
       <UserDescription />

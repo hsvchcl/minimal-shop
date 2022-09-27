@@ -1,14 +1,6 @@
 import ShortUniqueId from 'short-unique-id'
 import { GoogleAuthProvider, signInWithPopup, signOut } from 'firebase/auth'
-import {
-  query,
-  getDocs,
-  collection,
-  where,
-  addDoc,
-  doc,
-  limit,
-} from 'firebase/firestore'
+import { query, getDocs, collection, where, addDoc, limit } from 'firebase/firestore'
 import { auth, db } from '../../firebase/firebase.config'
 
 export const signInWithGoogle = async () => {
@@ -19,11 +11,7 @@ export const signInWithGoogle = async () => {
     let user = res.user
     user.shopUID = shopUID
 
-    const queryUsers = query(
-      collection(db, 'users'),
-      where('uid', '==', user.uid),
-      limit(1),
-    )
+    const queryUsers = query(collection(db, 'users'), where('uid', '==', user.uid), limit(1))
 
     const docs = await getDocs(queryUsers)
     if (docs.empty) {

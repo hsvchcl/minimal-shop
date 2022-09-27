@@ -8,7 +8,7 @@ export const productReducer = createSlice({
   initialState,
   reducers: {
     addProduct: (state, action): void => {
-      return state = action.payload;
+      return (state = action.payload)
     },
     deleteUser: (state, action) => {
       const taskFound = state.find((el) => el.id === action.payload)
@@ -17,13 +17,7 @@ export const productReducer = createSlice({
       }
     },
     editProduct: (state, action) => {
-      const {
-        id,
-        productName,
-        productDescription,
-        productPrice,
-        productImageUrl,
-      } = action.payload
+      const { id, productName, productDescription, productPrice, productImageUrl } = action.payload
 
       const productFound = state.find((el) => el.id === id)
       if (productFound) {
