@@ -17,7 +17,7 @@ export const ShopSection = () => {
             <Grid xs={6} key={idx}>
               <Card shadow width="100%">
                 <img
-                  src={el.images ? el.images[0] : ""}
+                  src={el.images ? el.images[0].imageURL : ""}
                   alt=""
                   height="250"
                   style={{ objectFit: "contain" }}

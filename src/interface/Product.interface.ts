@@ -1,3 +1,5 @@
+import { StorageReference } from "firebase/storage";
+
 export interface IProduct {
   fid?: string;
   id?: string;
@@ -9,7 +11,7 @@ export interface IProduct {
   shopUID?: string;
   stock?: number;
   files?: [];
-  images?: string[];
+  images?: IProductImages[] | any[];
 }
 
 export interface IUser {
@@ -23,4 +25,9 @@ export interface IUser {
 export interface IModalDisplay {
   modalUserInfo: boolean;
   modalEditProduct: boolean;
+}
+
+export interface IProductImages{
+  imageURL?: string;
+  imageRef?: StorageReference;
 }
