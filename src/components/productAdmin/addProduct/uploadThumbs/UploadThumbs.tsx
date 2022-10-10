@@ -38,7 +38,7 @@ export const UploadThumbs = (props: {
   }
 
   return (
-    <section hidden={props.images.length ? false : true}>
+    <section hidden={props.images.length ? false : true} className='animate'>
       <Spacer h={2} />
       <Card shadow>
         <div className='section-image'>

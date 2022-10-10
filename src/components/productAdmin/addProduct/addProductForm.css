@@ -8,9 +8,9 @@
   gap: 10px;
   cursor: pointer;
   transition: 0.2s;
-  border: 1px dashed gray;
+  border: 2px dashed #dbdbdb;
 }
 
 .upload-card:hover {
-  transform: scale(0.99);
+  transform: scale(1.020);
 }

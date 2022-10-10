@@ -10,7 +10,6 @@ export interface IProduct {
   created?: number
   shopUID?: string
   stock?: number
-  files?: []
   images?: IProductImages[] | any[]
 }
 

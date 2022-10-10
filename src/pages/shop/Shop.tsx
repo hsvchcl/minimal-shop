@@ -69,7 +69,7 @@ const ProductGrid = (props: {
                     {product.productName}
                   </Text>
                   <Text>{product.productDescription}</Text>
-                  <Badge type='success'>{priceFormat(product.productPrice)}</Badge>{' '}
+                  <Badge type='success'>{priceFormat(product.productPrice || 0)}</Badge>{' '}
                   <Spacer h={0.5} />
                   <Card.Footer></Card.Footer>
                 </Card>

@@ -10,26 +10,21 @@ import { getDownloadURL } from 'firebase/storage'
 import { UploadThumbs } from './uploadThumbs/UploadThumbs'
 import { FilePlus } from '@geist-ui/icons'
 
-export const AddUserForm = () => {
-  const [product, setProduct] = useState<IProduct>({
-    id: '',
-    files: [],
-    productName: '',
-    productDescription: '',
-    productPrice: 0,
-    productImageUrl: '',
-    stock: 0,
-    images: [],
-  })
+export const AddUserForm = (props: {
+  product: IProduct
+  setProduct: (producto: IProduct) => void
+  images: IProductImages[]
+  setImages: (images: IProductImages[]) => void
+}) => {
   const [loading, setLoading] = useState(false)
   const [validForm, setValidForm] = useState(false)
   const [percent, setPercent] = useState(0.0)
-  const [images, setImages] = useState<IProductImages[]>([])
+
   const [loadImage, setLoadImage] = useState(true)
   const { setToast } = useToasts()
 
   useEffect(() => {
-    const { productName, productPrice, stock } = product
+    const { productName, productPrice, stock } = props.product
     if (
       productName &&
       productName.length > 3 &&
@@ -40,10 +35,10 @@ export const AddUserForm = () => {
     } else {
       setValidForm(false)
     }
-  }, [product])
+  }, [props.product])
 
   const handlerform = async (e: any) => {
-    setProduct({ ...product, id: uuid(), [e.target.name]: e.target.value })
+    props.setProduct({ ...props.product, id: uuid(), [e.target.name]: e.target.value })
   }
 
   const handlerFile = (event: any) => {
@@ -52,7 +47,7 @@ export const AddUserForm = () => {
   }
 
   const uploadFile = (files: []) => {
-    if (images.length <= 4) {
+    if (props.images.length <= 4) {
       const uploadTask = uploadFileToStorage(files)
       uploadTask?.on(
         'state_changed',
@@ -73,7 +68,7 @@ export const AddUserForm = () => {
               imageURL: url,
               imageRef: uploadTask.snapshot.ref,
             }
-            setImages([...images, imageObject])
+            props.setImages([...props.images, imageObject])
           })
         },
       )
@@ -91,18 +86,18 @@ export const AddUserForm = () => {
       const productInfo = getUserLoggedInfo()
       setLoading(true)
       await addNewProduct({
-        ...product,
+        ...props.product,
         productImageUrl: '',
         productDescription: 'Producto sin descripción',
         shopUID: productInfo.shopUID,
-        images: images.map((el: IProductImages) => ({
+        images: props.images.map((el: IProductImages) => ({
           ...el,
           imageRef: JSON.stringify(el.imageRef),
         })),
       })
       setLoading(false)
       setToast({
-        text: `${product.productName!.toLocaleUpperCase()} has saved!`,
+        text: `${props.product.productName!.toLocaleUpperCase()} has saved!`,
         type: 'success',
         delay: 2000,
       })
@@ -169,7 +164,7 @@ export const AddUserForm = () => {
         width={'100%'}
       />
 
-      <UploadThumbs images={images} setImages={setImages} />
+      <UploadThumbs images={props.images} setImages={props.setImages} />
       <Spacer h={1.5} />
 
       <label htmlFor='files'>
@@ -177,7 +172,7 @@ export const AddUserForm = () => {
           <FilePlus cursor={'pointer'} />
           <Text>
             Agregar imágenes
-            {images.length > 0 && ': ' + images.length + ' de 5'}
+            {props.images.length > 0 && ': ' + props.images.length + ' de 5'}
           </Text>
         </div>
         <input

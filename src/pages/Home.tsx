@@ -7,7 +7,7 @@ import { getRegisterProducts } from '../components/productAdmin/products.service
 import { IProduct } from '../interface/Product.interface'
 import { productActions } from '../redux/productSlice'
 import { RootState, store } from '../redux/store'
-import { NewAdminSection } from './newAdminSection'
+import { NewAdminSection } from './newProduct/NewProduct'
 import { ProductAdminSection } from './ProductAdminSection'
 import { ShopSection } from './ShopSection'
 
